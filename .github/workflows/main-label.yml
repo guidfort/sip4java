@@ -18,14 +18,17 @@ jobs:
         with:
           fetch-depth: 0
         if: startsWith(github.ref, 'refs/tags/')
+        
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: 3.x
         if: startsWith(github.ref, 'refs/tags/')
+        
       - name: Install Python packages
         run: pip install mkdocs-material mike
         if: startsWith(github.ref, 'refs/tags/')
+        
       - name: Update Tag
         if: startsWith(github.ref, 'refs/tags/')
         run: |
