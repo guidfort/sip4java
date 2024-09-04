@@ -31,4 +31,4 @@ jobs:
         run: |
           ls -alh
           TAG_LATEST=$(git describe --tags --abbrev=0)
-          echo $TAG_LATEST
+          echo "TAG='$TAG_LATEST'"
