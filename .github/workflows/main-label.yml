@@ -1,0 +1,34 @@
+name: LabelTest
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the develop branch
+  #push:
+  #  branches: [ main ]
+  pull_request:
+    types: [labeled]
+    branches: [ main ]
+  label:
+    types: [created]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+  jobs:
+  labeltest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+      - name: Install Python packages
+        run: pip install mkdocs-material mike
+      - name: Update Tag
+        run: |
+          ls -alh
+          TAG_LATEST=$(git describe --tags --abbrev=0)
+          echo $TAG_LATEST
